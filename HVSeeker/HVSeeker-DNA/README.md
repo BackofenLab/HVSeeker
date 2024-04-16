@@ -1,40 +1,45 @@
 **HVSeeker-DNA**  
 This tool is designed for training machine learning models on DNA sequence data and making predictions using pre-trained models. The tool supports various preprocessing methods, and allows for model training and prediction.
-
-**Features**
+  
+**Features**  
 **Multiple Preprocessing Methods**: Choose from padding, contigs assembly, or sliding window approaches.
-Flexible Input Handling: Supports both DNA and protein sequence data.
-Model Training and Prediction: Train models from scratch or use existing models to make predictions.
-Customizable Sequence Lengths and Window Sizes: Adjust based on your dataset needs.
-Prerequisites
-Before you run this script, ensure you have the following installed:
+Flexible Input Handling: Supports both DNA and protein sequence data.  
+**Model Training and Prediction**: Train models from scratch or use existing models to make predictions.
+Customizable Sequence Lengths and Window Sizes: Adjust based on your dataset needs.  
+  
+**Prerequisites**
+Before you run this script, ensure you have the following installed:  
+  
+Python 3.x  
+PyTorch  
+BioPython  
+Other dependencies as listed in requirements.txt (if available)  
+  
+**Installation** 
+To set up your environment for this tool, follow these steps:  
+  
+**Clone the repository:**    
 
-Python 3.x
-PyTorch
-BioPython
-Other dependencies as listed in requirements.txt (if available)
-Installation
-To set up your environment for this tool, follow these steps:
-
-Clone the repository:
-
-bash
-Copy
-git clone https://github.com/your-repository/dna-sequence-analysis.git
+'''
+git clone https://github.com/your-repository/dna-sequence-analysis.git  
 cd dna-sequence-analysis
-Install required Python packages:
+'''
 
-bash
-Copy
+Install required Python packages:  
+
+'''
 pip install -r requirements.txt
-Usage
-This script can be run from the command line with various options. Below is a detailed description of the command-line arguments:
-
-Basic Usage
-bash
-Copy
-python dna_analysis.py --train_files [List of training directories] [OPTIONS]
-Options
+'''  
+  
+**Usage**  
+This script can be run from the command line with various options. Below is a detailed description of the command-line arguments:  
+  
+**Basic Usage**  
+''
+python main.py -f [List of training directories] [OPTIONS]
+''  
+    
+**Options**  
 -f, --train_files: Specify the directories containing training files. Multiple directories can be specified.
 -m, --method: Choose the preprocessing method (1 = padding, 2 = contigs assembly, 3 = sliding window). Default is 1.
 -l, --gene_length: Specify the gene length for training and testing. Default is 1000.
