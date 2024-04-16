@@ -44,7 +44,7 @@ python main.py -f [List of training directories] [OPTIONS]
 | -f         | --train_files   | Specify the directories containing training files. Multiple directories can be specified.     |           |
 | -m         | --method        | Choose the preprocessing method (1 = padding, 2 = contigs assembly, 3 = sliding window).      | 1         |
 | -l         | --gene_length   | Specify the gene length for training and testing.                                             | 1000      |
-| -w         | --window        | Window size for the sliding window method. It adjusts automatically if not valid. Only applicable if method 3 is selected. |           |
+| -w         | --window        | Window size for the sliding window method. It adjusts automatically if not valid. Only applicable if method 3 is selected. |     gene_length/10      |
 | -vts       | --split         | Specify the validation and test split percentages respectively.                               | [10, 10]  |
 | -predict   | --predict_mode  | Use this flag to enable prediction mode using trained models.                                 |           |
 
