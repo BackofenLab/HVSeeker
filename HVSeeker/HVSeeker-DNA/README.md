@@ -1,8 +1,8 @@
-HVSeeker-DNA
-This Python script (dna_analysis.py) is designed for training machine learning models on DNA sequence data and making predictions using pre-trained models. The script supports various preprocessing methods, handles both DNA and protein sequences, and allows for model training and prediction.
+**HVSeeker-DNA**  
+This tool is designed for training machine learning models on DNA sequence data and making predictions using pre-trained models. The tool supports various preprocessing methods, and allows for model training and prediction.
 
-Features
-Multiple Preprocessing Methods: Choose from padding, contigs assembly, or sliding window approaches.
+**Features**
+**Multiple Preprocessing Methods**: Choose from padding, contigs assembly, or sliding window approaches.
 Flexible Input Handling: Supports both DNA and protein sequence data.
 Model Training and Prediction: Train models from scratch or use existing models to make predictions.
 Customizable Sequence Lengths and Window Sizes: Adjust based on your dataset needs.
