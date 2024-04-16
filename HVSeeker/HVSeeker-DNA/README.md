@@ -58,11 +58,10 @@ When using the -predict flag, the script enters prediction mode. This mode expec
 Training a model with default settings on specified files:  
 
   ```
-python main.py -f "data/dna_sequences" --method 1
-Predicting using a pre-trained model:
+python main.py -f Bacteria Phage -vts 10 10 -m 1 -l 1000
 ```
   
-Prediction of sequences using a pretrained model:  
+Predicting using a pre-trained model:
   
 ```
 python main.py -predict
