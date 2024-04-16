@@ -10,10 +10,10 @@ This tool is designed for training machine learning models on DNA sequence data 
 ## Prerequisites
 Before you run this script, ensure you have the following installed:  
   
-Python 3.x  
-PyTorch  
-BioPython  
-Other dependencies as listed in requirements.txt (if available)  
+**Python 3.x**  
+**PyTorch**  
+**BioPython**  
+Other dependencies as listed in **requirements.txt**    
   
 ## Installation  
 To set up your environment for this tool, follow these steps:  
