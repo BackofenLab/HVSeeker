@@ -21,8 +21,8 @@ To set up your environment for this tool, follow these steps:
 **Clone the repository:**    
 
 ```
-git clone https://github.com/your-repository/dna-sequence-analysis.git  
-cd dna-sequence-analysis
+git clone https://github.com/bulatef/HVSeeker.git
+cd HVSeeker/HVSeeker-DNA
 ```
 
 **Install required Python packages:**    
@@ -58,11 +58,15 @@ When using the -predict flag, the script enters prediction mode. This mode expec
 ## Example  
 Training a model with default settings on specified files:  
 
-python dna_analysis.py --train_files "data/dna_sequences" --method 1
+  ```
+python main.py -f "data/dna_sequences" --method 1
 Predicting using a pre-trained model:
+```
+  
+Prediction of sequences using a pretrained model:  
   
 ```
-python dna_analysis.py -predict
+python main.py -predict
 ```
 ## Output  
-The script outputs the trained model parameters, performance metrics, and predictions (if in prediction mode). All outputs are stored in specified or default locations within the project directory.
+The script outputs the trained model parameters, performance metrics, and predictions (if in prediction mode). All outputs are stored in the project directory.
