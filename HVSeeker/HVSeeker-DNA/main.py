@@ -124,12 +124,12 @@ if __name__ == '__main__':
         if not args.protein_sequences:
             DNA_train = dict()
 
-            gene_file_train = 'gene_'+str(gene_length)+'_no_duplicates_with_padding.txt'
-            organ_file_train = 'organ_'+str(gene_length)+'_no_duplicates_with_padding.txt'
-            gene_file_test = 'gene_'+str(gene_length)+'_no_duplicates_with_padding_test.txt'
-            organ_file_test = 'organ_'+str(gene_length)+'_no_duplicates_with_padding_test.txt'
-            gene_file_val = 'gene_'+str(gene_length)+'_no_duplicates_with_padding_val.txt'
-            organ_file_val = 'organ_'+str(gene_length)+'_no_duplicates_with_padding_val.txt'
+            gene_file_train = 'gene_'+str(gene_length)+'_no_duplicates.txt'
+            organ_file_train = 'organ_'+str(gene_length)+'_no_duplicates.txt'
+            gene_file_test = 'gene_'+str(gene_length)+'_no_duplicates_test.txt'
+            organ_file_test = 'organ_'+str(gene_length)+'_no_duplicates_test.txt'
+            gene_file_val = 'gene_'+str(gene_length)+'_no_duplicates_val.txt'
+            organ_file_val = 'organ_'+str(gene_length)+'_no_duplicates_val.txt'
 
             train_files = []
             test_files = []
