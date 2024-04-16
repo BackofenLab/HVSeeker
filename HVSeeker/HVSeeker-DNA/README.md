@@ -35,19 +35,18 @@ pip install -r requirements.txt
 This script can be run from the command line with various options. Below is a detailed description of the command-line arguments:  
   
 **Basic Usage**  
-''
+'''
 python main.py -f [List of training directories] [OPTIONS]
-''  
+'''   
     
 **Options**  
--f, --train_files: Specify the directories containing training files. Multiple directories can be specified.
--m, --method: Choose the preprocessing method (1 = padding, 2 = contigs assembly, 3 = sliding window). Default is 1.
--l, --gene_length: Specify the gene length for training and testing. Default is 1000.
--w, --window: Window size for the sliding window method. It adjusts automatically if not valid. Only applicable if method 3 is selected.
--vts, --split: Specify the validation and test split percentages respectively. Default is [10, 10].
---predict_mode: Use this flag to enable prediction mode using trained models.
--p, --protein_sequences: Set this flag if providing protein sequences only.
-Prediction Mode
+-f| --train_files| Specify the directories containing training files. Multiple directories can be specified.
+-m| --method| Choose the preprocessing method (1 = padding, 2 = contigs assembly, 3 = sliding window). Default is 1.
+-l| --gene_length| Specify the gene length for training and testing. Default is 1000.
+-w| --window| Window size for the sliding window method. It adjusts automatically if not valid. Only applicable if method 3 is selected.
+-vts| --split| Specify the validation and test split percentages respectively. Default is [10, 10].
+-predict| --predict_mode| Use this flag to enable prediction mode using trained models.
+
 When using the -predict flag, the script enters prediction mode. This mode expects the following files in the script directory:
 
 X_test.csv: A tab-delimited file with two columns; the first column is 'ID' and the second column is 'sequence'.
