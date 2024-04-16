@@ -20,24 +20,24 @@ To set up your environment for this tool, follow these steps:
   
 **Clone the repository:**    
 
-'''
+```
 git clone https://github.com/your-repository/dna-sequence-analysis.git  
 cd dna-sequence-analysis
-'''
+```
 
 **Install required Python packages:**    
 
-'''
+```
 pip install -r requirements.txt
-'''  
+```
   
 ## Usage  
 This script can be run from the command line with various options. Below is a detailed description of the command-line arguments:  
   
 **Basic Usage**  
-'''
+```
 python main.py -f [List of training directories] [OPTIONS]
-'''   
+``` 
     
 ## Options  
 | Short Flag | Long Flag       | Description                                                                                   | Default   |
@@ -60,8 +60,9 @@ Training a model with default settings on specified files:
 
 python dna_analysis.py --train_files "data/dna_sequences" --method 1
 Predicting using a pre-trained model:
-
-python dna_analysis.py --predict_mode  
   
+```
+python dna_analysis.py -predict
+```
 ## Output  
 The script outputs the trained model parameters, performance metrics, and predictions (if in prediction mode). All outputs are stored in specified or default locations within the project directory.
