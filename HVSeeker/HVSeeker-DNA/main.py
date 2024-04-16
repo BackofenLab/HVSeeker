@@ -118,7 +118,7 @@ if __name__ == '__main__':
         window = False
 
     print(files_train)
-    print(window)
+    print('window size = ',window)
 
     if not args.predict_mode:
         if not args.protein_sequences:
