@@ -1,0 +1,10 @@
+790a94aa0b60e73913d06dde7687ab6a  X_test_60.csv
+d85052c8a63a1d73731ed99bcc54c33f  X_test_70.fasta
+983bd40720fcbe65003763ac77ba4056  X_test_80.csv
+7f5aa1162d766e3b1eb28c7e884890fd  X_test_90.csv
+8a877c7e0214f77572283adbb69809fc  X_test_95.csv
+ed9b1222ef41fb9b54bb0e4a6d578c4d  Y_test_70.csv
+6148ab51c8d4793f30025cfab09e08e5  Y_test_80.csv
+56f618b980d02f43b0d4cdddbd0c7fbe  Y_test_90.csv
+d4e1fa1c390beab28ec0fba0685bb683  Y_test_95.csv
+f85c05306a75ad57d1dfcd367b72c330  Y_test.csv
