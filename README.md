@@ -47,7 +47,7 @@ cd HVSeeker/HVSeeker-DNA
 **Install required Python packages using pip:**    
 
 ```
-pip install -r requirements.yml
+pip install -r HVSeeker-DNA_environment.yml
 ```
   
 **Install required Python using conda:**    
