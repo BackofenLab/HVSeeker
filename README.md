@@ -118,7 +118,6 @@ When using the -predict flag, the script enters prediction mode. This mode expec
 **X_test.csv:** A tab-delimited file with two columns; the first column is 'ID' and the second column is 'sequence'.  
 **Y_test.csv:** A tab-delimited file with two columns; the first column is 'ID' and the second column is 'class name' (Bacteria or Phage).  
 **model_best_acc2_test_model.pt:** A pre-trained model file.  
-```
 
 **Basic Usage HVSeeker-Proteins**  
 
@@ -151,7 +150,7 @@ Training a model with default settings on specified files:
 ```
 python main.py -f Bacteria Phage -vts 10 10 -m 1 -l 1000
 ```
-  
+
 Predicting using a pre-trained model:
   
 ```
