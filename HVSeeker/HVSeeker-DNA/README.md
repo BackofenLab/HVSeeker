@@ -6,29 +6,6 @@ This tool is designed for training machine learning models on DNA sequence data 
 **Model Training and Prediction:** Train models from scratch or use existing models to make predictions.  
 **Customizable Sequence Lengths and Window Sizes:** Adjust based on your dataset needs.  
   
-## Prerequisites
-Before you run this script, ensure you have the following installed:  
-  
-**Python 3.x**  
-**PyTorch**  
-**BioPython**  
-Other dependencies as listed in **requirements.txt**    
-  
-## Installation  
-To set up your environment for this tool, follow these steps:  
-  
-**Clone the repository:**    
-
-```
-git clone https://github.com/bulatef/HVSeeker.git
-cd HVSeeker/HVSeeker-DNA
-```
-
-**Install required Python packages:**    
-
-```
-pip install -r requirements.txt
-```
   
 ## Usage  
 This script can be run from the command line with various options. Below is a detailed description of the command-line arguments:  

@@ -40,7 +40,7 @@ In order to install the corresponding environment one can execute the following 
 
 
 ```
-conda env create -f environment.yml --name HVSeekerProt
+conda env create -f HVSeeker_Prot_enviroment.yml --name HVSeekerProt
 ```
 
 ### Activation of the environment
