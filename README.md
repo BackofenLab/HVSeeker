@@ -30,7 +30,8 @@ Before you run this script, ensure you have the following installed:
 **Python 3.x**  
 **PyTorch**  
 **BioPython**  
-Other dependencies as listed in **requirements.yml**    
+Other dependencies for HVSeeker-DNA are listed in **HVSeeker-DNA_environment.yml** and for HVSeeker-Protein in **HVSeeker_Prot_enviroment.yml**
+
   
   
   
