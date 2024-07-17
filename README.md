@@ -78,7 +78,7 @@ conda env create -f HVSeeker/HVSeeker-DNA/requirements.yml --name HVSeekerDNA
 or alternatively:
 
 ```
-conda env create -f HVSeeker/HVSeeker-Prot/environment.yml --name HVSeekerProt
+conda env create -f HVSeeker/HVSeeker-Protein/environment.yml --name HVSeekerProt
 ```
 
 ### Activation of the environment
