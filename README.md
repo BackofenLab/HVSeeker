@@ -72,13 +72,13 @@ Then we create an environment. The necessary setup is provided in the "environme
 In order to install the corresponding environment one can execute the following command from the "for_environment" directory
 
 ```
-conda env create -f environment.yml --name HVSeekerDNA
+conda env create -f HVSeeker/HVSeeker-DNA/requirements.yml --name HVSeekerDNA
 ```
 
 or alternatively:
 
 ```
-conda env create -f environment.yml --name HVSeekerProt
+conda env create -f HVSeeker/HVSeeker-Prot/environment.yml --name HVSeekerProt
 ```
 
 ### Activation of the environment
