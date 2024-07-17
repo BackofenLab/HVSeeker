@@ -100,6 +100,10 @@ conda activate HVSeekerProt
 This script can be run from the command line with various options. Below is a detailed description of the command-line arguments:  
   
 **Basic Usage HVSeeker-DNA**  
+
+To use HVSeeker you can either train models yourself or download our pretrained models from https://drive.google.com/drive/folders/14qXKk4YnBaxZ0_OPxDe-frm0WpQNnP6w in the folder /Method/Proposed method/
+
+
 ```
 python main.py -f [List of training directories] [OPTIONS]
 ``` 
