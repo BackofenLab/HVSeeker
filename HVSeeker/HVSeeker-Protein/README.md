@@ -55,7 +55,12 @@ conda activate HVSeekerProt
   
 **Basic Usage HVSeeker-Proteins**  
 
-To run HVSeeker-Proteins for further validation of sequences, simply run:
+
+Since HVSeeker-Proteins relies on ProtBert you will first have to clone the ProtBert github from here: https://github.com/nadavbra/protein_bert
+
+To run HVSeeker-Proteins you will also have to download the pretrained models from: https://drive.google.com/drive/folders/1akwf7QjDA_Hb2VMDhBZEGK7esNWNj3FI?usp=sharing
+Then you can simply run the model using the following commands:
+
 
 
 ```
@@ -71,6 +76,9 @@ and for training:
 ```
 train.py -t {test_file} -f {training_file}
 ```
+
+
+
 ### Output
 
 The script predict.py creates a table that summarizes the sequence, label and prediction 

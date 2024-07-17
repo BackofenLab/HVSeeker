@@ -100,24 +100,16 @@ When using the -predict flag, the script enters prediction mode. This mode expec
 **X_test.csv:** A tab-delimited file with two columns; the first column is 'ID' and the second column is 'sequence'.  
 **Y_test.csv:** A tab-delimited file with two columns; the first column is 'ID' and the second column is 'class name' (Bacteria or Phage).  
 **model_best_acc2_test_model.pt:** A pre-trained model file.  
-
-## Example  
-Training a model with default settings on specified files:  
-
-  ```
-python main.py -f Bacteria Phage -vts 10 10 -m 1 -l 1000
 ```
-  
-Predicting using a pre-trained model:
-  
-```
-python main.py -predict
-```
-
 
 **Basic Usage HVSeeker-Proteins**  
 
-To run HVSeeker-Proteins for further validation of sequences, simply run:
+
+Since HVSeeker-Proteins relies on ProtBert you will first have to clone the ProtBert github from here: https://github.com/nadavbra/protein_bert
+
+To run HVSeeker-Proteins you will also have to download the pretrained models from: https://drive.google.com/drive/folders/1akwf7QjDA_Hb2VMDhBZEGK7esNWNj3FI?usp=sharing
+Then you can simply run the model using the following commands:
+
 
 
 ```
@@ -133,6 +125,23 @@ and for training:
 ```
 train.py -t {test_file} -f {training_file}
 ```
+
+
+## Example  
+Training a model with default settings on specified files:  
+
+  ```
+python main.py -f Bacteria Phage -vts 10 10 -m 1 -l 1000
+```
+  
+Predicting using a pre-trained model:
+  
+```
+python main.py -predict
+```
+
+
+
 
 
 
