@@ -1,6 +1,24 @@
 # HVSeeker   
-This tool is designed for training machine learning models on DNA sequence data and making predictions using pre-trained models. The tool supports various preprocessing methods, and allows for model training and prediction.
-  
+**Motivation**
+Bacteriophages are among the most abundant organisms on Earth, significantly impacting
+ecosystems and human society. The identification of viral sequences, especially novel ones, from mixed
+metagenomes is a critical first step in analyzing the viral components of host samples. This plays a
+key role in many downstream tasks. However, this is a challenging task due to their rapid evolution
+rate. The identification process typically involves two steps: distinguishing viral sequences from the host
+and identifying if they come from novel viral genomes. Traditional metagenomic techniques that rely
+on sequence similarity with known entities often fall short, especially when dealing with short or novel
+genomes. Meanwhile, deep learning has demonstrated its efficacy across various domains, including the
+Bioinformatics field
+**Results:**
+We have developed HVSeeker, a deep learning-based method for distinguishing between
+bacterial and phage sequences. HVSeeker consists of two separate models: one analyzing DNA
+sequences and the other focusing on proteins. This method has shown promising results on sequences
+with various lengths, ranging from 200 to 1500 base pairs. Tested on both NCBI and IMGVR
+databases, HVSeeker outperformed several methods from the literature such as Seeker, Rnn-VirSeeker,
+DeepVirFinder, and PPR-Meta. Moreover, when compared with other methods on benchmark datasets,
+HVSeeker has shown better performance, establishing its effectiveness in identifying unknown phage
+genomes
+
 ## Features  
 **Multiple Preprocessing Methods:** Choose from padding, contigs assembly, or sliding window approaches.  
 **Model Training and Prediction:** Train models from scratch or use existing models to make predictions.  
@@ -130,7 +148,7 @@ train.py -t {test_file} -f {training_file}
 ## Example  
 Training a model with default settings on specified files:  
 
-  ```
+```
 python main.py -f Bacteria Phage -vts 10 10 -m 1 -l 1000
 ```
   
