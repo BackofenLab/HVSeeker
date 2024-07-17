@@ -113,8 +113,7 @@ Predicting using a pre-trained model:
 ```
 python main.py -predict
 ```
-## Output  
-The script outputs the trained model parameters, performance metrics, and predictions (if in prediction mode). All outputs are stored in the project directory.
+
 
 **Basic Usage HVSeeker-Proteins**  
 
