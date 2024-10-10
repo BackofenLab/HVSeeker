@@ -92,6 +92,12 @@ if __name__ == '__main__':
                                 help='Provide protein sequences only',
                                 required=False
                                 )
+    cmdline_parser.add_argument('-o', '--outpath',
+                                default="./",
+                                help='Provide provide output path',
+                                type=str,
+                                required=False
+                                )
     
     args, unknowns = cmdline_parser.parse_known_args()
     
@@ -168,7 +174,7 @@ if __name__ == '__main__':
 
 
             print(train_files)
-            outpath = os.getcwd()
+            outpath = args.outpath
             print('path = ', outpath)
             X_train, Y_train, X_val, Y_val, X_test, Y_test, number_subsequences = test_and_plot(path, outpath+'/test_and_plot', 'test_model', do_shrink_timesteps = False)
             DNA_model(X_train, X_val, Y_train, Y_val, outpath, sampleSize=1, nodes=150, suffix="test_model", epochs=100, dropout=0.2)
