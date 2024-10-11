@@ -94,6 +94,25 @@ or alternatively:
 ```
 conda activate HVSeekerProt
 ```
+
+## Run with docker
+Alternative to using conda we make a docker image available. You can either build the docker image directly after copying docker file and environment into the corresponding folder:
+
+```
+docker build --network host hvseekerdna .
+```
+and then run all scripts using the created image. Just make sure to set the volume accordingly to your system. For training:
+
+```
+sudo docker run  --gpus all -v {your-system-path}/Sample_Data/Bacteria:/app/Bacteria -v {your-system-path}/Sample_Data/Phage:/app/Phage -v {your-system-path}:/app/output -v {your-system-path}:/app/data_path hvseekerdna   python -u main.py -f Bacteria Phage -ts 10 10 -m 1 -l 1000 -o output -d data_path
+```
+
+and for prediction:
+
+```
+sudo docker run --gpus all -v {your-system-path}Sample_Data:/app/Sample_Data -v {your-system-path}:/app/output -v {your-system-path}:/app/data_path hvseekerdna python -u main.py -predict -d data_path -o output
+```
+
   
   
 ## Usage  
