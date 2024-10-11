@@ -176,12 +176,16 @@ if __name__ == '__main__':
             print(train_files)
             outpath = args.outpath
             print('path = ', outpath)
-            X_train, Y_train, X_val, Y_val, X_test, Y_test, number_subsequences = test_and_plot(path, outpath+'/test_and_plot', 'test_model', do_shrink_timesteps = False)
+            X_train, Y_train, X_val, Y_val, X_test, Y_test, number_subsequences = test_and_plot(path, outpath, 'test_model', do_shrink_timesteps = False)
             DNA_model(X_train, X_val, Y_train, Y_val, outpath, sampleSize=1, nodes=150, suffix="test_model", epochs=100, dropout=0.2)
 
     else:
-        try:
-            result = subprocess.run(['python', 'DNA_Prediction_Preprocessing.py'], check=True, text=True, capture_output=True)
-            print("Script output:", result.stdout)
-        except subprocess.CalledProcessError as e:
-            print("Error occurred while running script:", e)
+
+        from DNA_Prediction_Preprocessing import test_and_plot
+        from DNA_Predictor import predict
+
+        X_test, Y_test, number_sequences = test_and_plot(args.data_out_path, args.data_out_path, "test_model")
+        accuracy = predict(X_test, Y_test, model_path=args.outpath)
+        print("The test accuracy is: " + str(accuracy))
+
+
