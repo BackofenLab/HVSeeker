@@ -28,7 +28,7 @@ def test_and_plot(inpath, outpath, suffix,
     SEED = 42
     directory = ''
 
-    maxLen = use_data_nanocomb(directory=inpath, one_hot_encoding=one_hot_encoding, repeat=repeat,
+    maxLen, Y_test = use_data_nanocomb(directory=inpath, one_hot_encoding=one_hot_encoding, repeat=repeat,
                                use_spacer=use_repeat_spacer,
                                online=online_training, unbalanced=False, maxLen=kwargs.get("maxLen", 0))
 
@@ -86,12 +86,5 @@ def use_data_nanocomb(directory, one_hot_encoding=True, repeat=True, use_spacer=
     # Apply the mapping to the DataFrame
     Y_test = vectorized_mapping(Y_test_old)
 
-    return maxLen
+    return maxLen, Y_test
 
-X_test, Y_test, number_subsequences = test_and_plot('./', './', 'test_model')
-
-
-print('Are all labels numeric?', Y_test.shape)
-
-accuracy = predict(X_test, Y_test)
-print('Accuracy = ', 100*accuracy, '%')
