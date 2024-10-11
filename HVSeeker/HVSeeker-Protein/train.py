@@ -32,7 +32,7 @@ def train(arguments, train_file, test_file):
         
         train_set, valid_set = train_test_split(full_set, stratify = full_set['label'], test_size = 0.1, random_state = 0)
 
-        pretrained_model_generator, input_encoder, nannotation = load_pretrained_model()
+        pretrained_model_generator, input_encoder = load_pretrained_model()
         model_generator = FinetuningModelGenerator(pretrained_model_generator, OUTPUT_SPEC, pretraining_model_manipulation_function = \
         get_model_with_hidden_layers_as_outputs, dropout_rate = dropout_rate)
 
