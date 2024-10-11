@@ -96,6 +96,17 @@ conda activate HVSeekerProt
 ```
 
 ## Run with docker
+
+Before trying to create the image make sure you have both docker and nvidia-container-toolkit installed:
+
+```
+
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+```
+
+
 Alternative to using conda we make a docker image available. You can either build the docker image directly after copying docker file and environment into the corresponding folder:
 
 ```
