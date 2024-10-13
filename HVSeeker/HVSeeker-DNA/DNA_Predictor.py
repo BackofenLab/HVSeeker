@@ -75,7 +75,7 @@ def predict(input_data, labels,model_path, batch_size=32):
         'Labels': all_labels
     })
     df['Accuracy'] = accuracy  # Add the accuracy to the DataFrame
-    df.to_csv('predictions_and_accuracy.csv', index=False)
+    df.to_csv(model_path + '/predictions_and_accuracy.csv', index=False)
 
     return accuracy
 
