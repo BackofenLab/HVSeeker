@@ -107,7 +107,7 @@ if __name__ == '__main__':
     except argparse.ArgumentTypeError as e:
         cmdline_parser.error(str(e))
     
-    print(torch.cuda.is_available())
+    print("using cuda: " + str(torch.cuda.is_available()))
 
     class_names = args.train_files
     classes = len(class_names)
@@ -123,8 +123,6 @@ if __name__ == '__main__':
     else:
         window = False
 
-    print(files_train)
-    print('window size = ',window)
 
     if not args.predict_mode:
         if not args.protein_sequences:
@@ -173,9 +171,7 @@ if __name__ == '__main__':
                 make_dataset(value[0], value[1], path, vs/100, ts/100, 'train')
 
 
-            print(train_files)
             outpath = args.outpath
-            print('path = ', outpath)
             X_train, Y_train, X_val, Y_val, X_test, Y_test, number_subsequences = test_and_plot(path, outpath, 'test_model', do_shrink_timesteps = False)
             DNA_model(X_train, X_val, Y_train, Y_val, outpath, sampleSize=1, nodes=150, suffix="test_model", epochs=100, dropout=0.2)
 
@@ -184,7 +180,7 @@ if __name__ == '__main__':
         from DNA_Prediction_Preprocessing import test_and_plot
         from DNA_Predictor import predict
 
-        X_test, Y_test, number_sequences = test_and_plot(args.data_out_path, args.data_out_path, "test_model")
+        X_test, Y_test, number_sequences = test_and_plot(args.outpath, args.outpath, "test_model")
         accuracy = predict(X_test, Y_test, model_path=args.outpath)
         print("The test accuracy is: " + str(accuracy))
 
