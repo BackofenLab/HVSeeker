@@ -171,7 +171,6 @@ def DNA_model(X_train, X_val, Y_train, Y_val, outpath, sampleSize=1, nodes=32, s
         val_losses.append(val_loss)
         val_accuracies.append(val_acc)
 
-        epoch = epoch + 1
         
         
         torch.save({"model_dict": model.state_dict(), "optimizer_dict": optimizer.state_dict(), "scheduler_dict": scheduler.state_dict(), "epoch": epoch, "best_val_loss": best_val_loss, "best_val_acc": best_val_acc, "log_num": log_num}, outpath + "/model_dict_save.pt")
@@ -179,9 +178,10 @@ def DNA_model(X_train, X_val, Y_train, Y_val, outpath, sampleSize=1, nodes=32, s
         
         
         with open('log' + str(log_num) + '.txt', 'a') as f:
-            print(f'Epoch {epoch + 1}/{epochs}, Train Loss: {train_loss}, Train Acc: {train_acc}, Val Loss: {val_loss}, Val Acc: {val_acc}', file=f)
+            print(f'Epoch {epoch}/{epochs}, Train Loss: {train_loss}, Train Acc: {train_acc}, Val Loss: {val_loss}, Val Acc: {val_acc}', file=f)
 
-        print(f'Epoch {epoch + 1}/{epochs}, Train Loss: {train_loss}, Train Acc: {train_acc}, Val Loss: {val_loss}, Val Acc: {val_acc}')
+        print(f'Epoch {epoch}/{epochs}, Train Loss: {train_loss}, Train Acc: {train_acc}, Val Loss: {val_loss}, Val Acc: {val_acc}')
+        epoch = epoch + 1
 
         if val_loss < best_val_loss:
             best_val_loss = val_loss
