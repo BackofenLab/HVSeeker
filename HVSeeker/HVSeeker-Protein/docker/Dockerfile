@@ -58,7 +58,6 @@ ADD protein_bert .
 COPY optimize_finetuning.py .
 COPY predict.py .
 COPY train.py .
-COPY download_proteinbert_model.py .
 
 # Run your Python script
 ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "hvseekerProt"]
