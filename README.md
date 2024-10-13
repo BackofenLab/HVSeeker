@@ -23,6 +23,9 @@ genomes
 **Multiple Preprocessing Methods:** Choose from padding, contigs assembly, or sliding window approaches.  
 **Model Training and Prediction:** Train models from scratch or use existing models to make predictions.  
 **Customizable Sequence Lengths and Window Sizes:** Adjust based on your dataset needs.  
+
+## Hardware
+We are currently using one single NVIDIA Tesla T4, 16 GB GPU for training. If you only want to predict and test using HVSeeker you can also make use of your CPU.
   
 ## Prerequisites
 Before you run this script, ensure you have the following installed:  
