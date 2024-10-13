@@ -57,6 +57,9 @@ conda activate HVSeekerProt
 
 
 Since HVSeeker-Proteins relies on ProtBert you will first have to clone the ProtBert github from here: https://github.com/nadavbra/protein_bert
+```
+git clone https://github.com/nadavbra/protein_bert.git --recurse-submodules
+```
 
 To run HVSeeker-Proteins you will also have to download the pretrained models from: 
 
