@@ -1,3 +1,7 @@
+import tensorflow as tf
+#print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+print(tf.__version__)
+import pickle
 import pandas as pd
 from tensorflow import keras
 from sklearn.model_selection import train_test_split
@@ -8,7 +12,9 @@ import numpy as np
 import random
 import argparse
 
-def train(arguments, train_file, test_file):
+
+
+def train(arguments, train_file, test_file, savefile):
 
         max_epochs_per_stage = arguments[0] 
         dropout_rate = arguments[1] 
@@ -43,19 +49,20 @@ def train(arguments, train_file, test_file):
 
         finetune(model_generator, input_encoder, OUTPUT_SPEC, train_set['seq'], train_set['label'], valid_set['seq'], valid_set['label'], \
         seq_len = 573, batch_size = 32, max_epochs_per_stage = max_epochs_per_stage, lr = lr, begin_with_frozen_pretrained_layers = True, \
-        lr_with_frozen_pretrained_layers = lr_with_frozen_pretrained_layers, n_final_epochs = 1, final_seq_len = 573, final_lr = min_lr, callbacks = training_callbacks)
+        lr_with_frozen_pretrained_layers = lr_with_frozen_pretrained_layers, n_final_epochs = 1, final_seq_len = 1500, final_lr = min_lr, callbacks = training_callbacks)
 
 
         results, confusion_matrix = evaluate_by_len(model_generator, input_encoder, OUTPUT_SPEC, test_set['seq'], test_set['label'], \
         start_seq_len = 573, start_batch_size = 32)
-        
-        
-        print("results")
-        print(results)
-        
-        print("confusion matrix")
-        print(confusion_matrix)
-        
+
+
+        model = model_generator.create_model(seq_len=573)
+
+
+
+        with open(savefile + "/model.pkl", 'wb') as f:
+            pickle.dump((model.get_weights()), f)
+  
         return
         
         
@@ -72,16 +79,22 @@ if __name__ == "__main__":
     cmdline_parser.add_argument('-f', '--train_file',
                                 default='./train_file.csv',
                                 help='name of train file',
+                                type=str)                            
+    cmdline_parser.add_argument('-s', '--save',
+                                default='./models',
+                                help='path to save the models',
                                 type=str)
-                                
 
     args, unknowns = cmdline_parser.parse_known_args()     
 
-
+    print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+    print(tf.__version__)
     random.seed(31)
-    keras.utils.set_random_seed(31)
+    #keras.utils.set_random_seed(31)
     np.random.seed(31)
-    
-    train([35, 0.6930443135406078, 3, 2, 0.39657786522163363, 3.8602329788847605e-05, 0.00035016815751852485, 0.0011187914605146963], args.train_file, args.test_file)
+    tf.random.set_seed(31)
+
+    train([35, 0.6930443135406078, 3, 2, 0.39657786522163363, 3.8602329788847605e-05, 0.00035016815751852485, 0.0011187914605146963], args.train_file, args.test_file, args.save)
+
 
 

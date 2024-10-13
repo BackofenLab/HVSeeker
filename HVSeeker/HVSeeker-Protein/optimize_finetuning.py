@@ -10,8 +10,9 @@ from skopt import BayesSearchCV, gp_minimize
 import time
 from skopt.space import Space, Categorical, Integer, Real, Dimension
 import argparse
+from functools import partial
 
-def run_finetuneing(arguments):
+def run_finetuneing(arguments, finetune_file):
 
         max_epochs_per_stage = arguments[0]
         dropout_rate = arguments[1]
@@ -21,7 +22,7 @@ def run_finetuneing(arguments):
         min_lr = arguments[5]
         lr = arguments[6]
         lr_with_frozen_pretrained_layers = arguments[7]
-        file_ = "./finetune_data.csv"
+        file_ = finetune_file
 
         OUTPUT_TYPE = OutputType(False, 'binary')
         UNIQUE_LABELS = [0, 1]
@@ -64,7 +65,6 @@ def run_finetuneing(arguments):
         
 
         print(result_list)
-        print("Done")
 
     
         return np.mean(result_list)
@@ -80,20 +80,24 @@ if __name__ == "__main__":
                                 default="./out_result.npy",
                                 help='output_file',
                                 type=str)
+    cmdline_parser.add_argument('-f', '--finetune_file',
+                                default="./finetune_file.csv",
+                                help='output_file',
+                                type=str)
 
     args, unknowns = cmdline_parser.parse_known_args()
 
     random.seed(31)
     keras.utils.set_random_seed(31)
     np.random.seed(31)
-
+    objective_finetune = partial(run_finetuneing, finetune_file=args.finetune_file) 
     start_time = time.time()
     space = [Integer(10,50, name='max_epochs_per_stage'),Real(0.1, 0.7, prior = "uniform", name="dropout_rate"),Integer(1,3, name="partience1"),Integer(1,3, name="partience2"),Real(0.1, 0.4, prior = "uniform", name ="factor"), Real(1e-6,1e-4, prior='log-uniform', name = "min_lr"), Real(1e-5,1e-3, prior='log-uniform', name="lr"),Real(1e-3,1e-2, prior='log-uniform', name = "lr_with_frozen_pretrained_layers")]
-    res = gp_minimize(run_finetuneing,
+    res = gp_minimize(objective_finetune,
                   space,
                   acq_func="EI",      
                   n_calls=25,         
-                  n_random_starts=8,  
+                  n_random_starts=8,
                   #noise=0.1**2,       
                   random_state=1234)
                   

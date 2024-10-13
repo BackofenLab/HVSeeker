@@ -95,9 +95,10 @@ or alternatively:
 conda activate HVSeekerProt
 ```
 
-## Run with docker
+## Run HVSeekerDNA with docker
 
-Before trying to create the image make sure you have both docker and nvidia-container-toolkit installed:
+Alternatively we provide a docker container capable of running HVSeeker_Protein. You can build it using the Dockerfile provided in the docker folder.
+First move the Dockerfile and enviroment.yml into the HVSeeker_Protein main directory. Before trying to create the image make sure you have both docker and nvidia-container-toolkit installed:
 
 ```
 
@@ -123,6 +124,37 @@ and for prediction:
 ```
 sudo docker run --gpus all -v {your-system-path}Sample_Data:/app/Sample_Data -v {your-system-path}:/app/output -v {your-system-path}:/app/data_path hvseekerdna python -u main.py -predict -d data_path -o output
 ```
+
+## Run HVSeekerProt with docker
+
+Alternatively we provide a docker container capable of running HVSeeker_Protein. You can build it using the Dockerfile provided in the docker folder.
+First move the Dockerfile and enviroment.yml into the HVSeeker_Protein main directory. Make sure you have docker and and nvidia-container-toolkit installed:
+
+```
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+```
+
+then build the docker image:
+
+```
+sudo docker build --network host -t hvseekerprot .
+
+```
+and run with for training:
+
+```
+sudo docker run --network host --gpus all --privileged=true -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u train.py -t input/{data} -f input/{data} -s models"
+```
+
+or prediction:
+
+```
+sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u predict.py --test_file input/{test_file} --output_file input/{output name} -m models/{model_name}
+```
+
+We made the build image available here:
 
   
   

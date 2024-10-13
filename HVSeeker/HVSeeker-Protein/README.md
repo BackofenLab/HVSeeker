@@ -51,14 +51,17 @@ Before running DeepDefense one need to activate the corresponding environment.
 ```
 conda activate HVSeekerProt
 ```
-  
+
   
 **Basic Usage HVSeeker-Proteins**  
 
 
 Since HVSeeker-Proteins relies on ProtBert you will first have to clone the ProtBert github from here: https://github.com/nadavbra/protein_bert
 
-To run HVSeeker-Proteins you will also have to download the pretrained models from: https://drive.google.com/drive/folders/1akwf7QjDA_Hb2VMDhBZEGK7esNWNj3FI?usp=sharing
+To run HVSeeker-Proteins you will also have to download the pretrained models from: 
+
+https://drive.google.com/drive/folders/1wPgxfLnh-esQUB8xNhgnz9rJucmyX9Dm?usp=sharing
+
 Then you can simply run the model using the following commands:
 
 
@@ -77,6 +80,36 @@ and for training:
 train.py -t {test_file} -f {training_file}
 ```
 
+**Using docker**
+
+Alternatively we provide a docker container capable of running HVSeeker_Protein. You can build it using the Dockerfile provided in the docker folder.
+First move the Dockerfile and enviroment.yml into the HVSeeker_Protein main directory. Make sure you have docker and and nvidia-container-toolkit installed:
+
+```
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+```
+
+then build the docker image:
+
+```
+sudo docker build --network host -t hvseekerprot .
+
+```
+and run with for training:
+
+```
+sudo docker run --network host --gpus all --privileged=true -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u train.py -t input/{data} -f input/{data} -s models"
+```
+
+or prediction:
+
+```
+sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u predict.py --test_file input/{test_file} --output_file input/{output name} -m models/{model_name}
+```
+
+We made the build image available here:
 
 
 ### Output
