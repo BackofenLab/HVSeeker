@@ -6,11 +6,10 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def predict(input_data, labels, batch_size=32):
+def predict(input_data, labels,model_path, batch_size=32):
     # Load the model
-    model = torch.load('model_best_acc2_test_model.pt')
+    model = torch.load(model_path + '/model_best_acc2_test_model.pt')
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(device)
 
     # Move your model to the GPU
     model = model.to(device)
