@@ -11,6 +11,7 @@ import time
 from skopt.space import Space, Categorical, Integer, Real, Dimension
 import argparse
 from functools import partial
+import tensorflow as tf
 
 def run_finetuneing(arguments, finetune_file):
 
@@ -88,7 +89,7 @@ if __name__ == "__main__":
     args, unknowns = cmdline_parser.parse_known_args()
 
     random.seed(31)
-    keras.utils.set_random_seed(31)
+    tf.random.set_seed(31)
     np.random.seed(31)
     objective_finetune = partial(run_finetuneing, finetune_file=args.finetune_file) 
     start_time = time.time()
