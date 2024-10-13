@@ -72,6 +72,8 @@ Then you can simply run the model using the following commands:
 ```
 python predict.py --output_file {prefix of output file} --test_file {test_file}
 ```
+When dealing with unknown data, simply use 0 for the label and disregard the evaluation. Have a look at the Sample_Data to see the expected data structure. 
+
 additionally we provide a file for optimizing and training on a novel dataset:
 
 ```
