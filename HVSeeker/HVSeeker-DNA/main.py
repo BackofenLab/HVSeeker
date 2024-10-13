@@ -165,7 +165,7 @@ if __name__ == '__main__':
 
             train_files, DNA_train = prepare_dataset(files_train, class_names, gene_file_train, organ_file_train, method, gene_length, window)
 
-            path = os.path.dirname(os.path.abspath(__file__)) + '/' + 'trainingdata'
+            path = args.outpath + "/trainingdata"
 
             for key, value in DNA_train.items():
                 make_dataset(value[0], value[1], path, vs/100, ts/100, 'train')
