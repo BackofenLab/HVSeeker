@@ -174,10 +174,8 @@ def DNA_model(X_train, X_val, Y_train, Y_val, outpath, sampleSize=1, nodes=32, s
         epoch = epoch + 1
         
         
-        print("torch save")
         torch.save({"model_dict": model.state_dict(), "optimizer_dict": optimizer.state_dict(), "scheduler_dict": scheduler.state_dict(), "epoch": epoch, "best_val_loss": best_val_loss, "best_val_acc": best_val_acc, "log_num": log_num}, outpath + "/model_dict_save.pt")
         
-
         
         
         with open('log' + str(log_num) + '.txt', 'a') as f:
