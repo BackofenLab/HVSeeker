@@ -178,9 +178,9 @@ def DNA_model(X_train, X_val, Y_train, Y_val, outpath, sampleSize=1, nodes=32, s
         
         
         with open('log' + str(log_num) + '.txt', 'a') as f:
-            print(f'Epoch {epoch}/{epochs}, Train Loss: {train_loss}, Train Acc: {train_acc}, Val Loss: {val_loss}, Val Acc: {val_acc}', file=f)
+            print(f'Epoch {epoch+1}/{epochs}, Train Loss: {train_loss}, Train Acc: {train_acc}, Val Loss: {val_loss}, Val Acc: {val_acc}', file=f)
 
-        print(f'Epoch {epoch}/{epochs}, Train Loss: {train_loss}, Train Acc: {train_acc}, Val Loss: {val_loss}, Val Acc: {val_acc}')
+        print(f'Epoch {epoch+1}/{epochs}, Train Loss: {train_loss}, Train Acc: {train_acc}, Val Loss: {val_loss}, Val Acc: {val_acc}')
         epoch = epoch + 1
 
         if val_loss < best_val_loss:
