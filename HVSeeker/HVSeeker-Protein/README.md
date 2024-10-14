@@ -114,7 +114,7 @@ or prediction:
 sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u predict.py --test_file input/{test_file} --output_file input/{output name} -m models/{model_name}
 ```
 
-We made the build image available here:
+We made the build image available here: https://drive.google.com/file/d/1-SZM4Uf0tL0Hg50YoiRrAmyHeQkupbeu/view?usp=sharing
 
 
 ### Output
