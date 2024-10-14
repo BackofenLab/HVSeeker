@@ -122,7 +122,6 @@ sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-pat
 
 We made the build image available here: https://drive.google.com/file/d/1-SZM4Uf0tL0Hg50YoiRrAmyHeQkupbeu/view?usp=sharing
 
-
 ### Output
 
 The script predict.py creates a table that summarizes the sequence, label and prediction 

@@ -132,7 +132,7 @@ we made the build docker image available here: https://drive.google.com/file/d/1
 ## Run HVSeekerProt with docker
 
 Alternatively we provide a docker container capable of running HVSeeker_Protein. You can build it using the Dockerfile provided in the docker folder.
-First move the Dockerfile and enviroment.yml into the HVSeeker_Protein main directory. Make sure you have docker and and nvidia-container-toolkit installed:
+First move the Dockerfile and enviroment.yml into the HVSeeker_Protein main directory. Please make sure you have docker and and nvidia-container-toolkit installed:
 
 ```
 sudo apt-get update
