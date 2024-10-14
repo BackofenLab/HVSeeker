@@ -73,6 +73,7 @@ and for prediction:
 sudo docker run --gpus all -v {your-system-path}Sample_Data:/app/Sample_Data -v {your-system-path}:/app/output hvseekerdna python -u main.py -predict -o output
 ```
 
+we made the build docker image available here: https://drive.google.com/file/d/1OPPmD_s9YYOKd4leQGk4UkLFPSrEUS7O/view?usp=sharing
 
 
 ## Output  
