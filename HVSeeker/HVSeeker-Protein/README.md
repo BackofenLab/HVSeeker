@@ -72,7 +72,7 @@ Then you can simply run the model using the following commands:
 ```
 python predict.py --output_file {prefix of output file} --test_file {test_file}
 ```
-When dealing with unknown data, simply use 0 for the label and disregard the evaluation. Have a look at the Sample_Data to see the expected data structure. 
+If you want to run evaluation instead, simply add the --evaluation flag. 
 
 additionally we provide a file for optimizing and training on a novel dataset:
 
@@ -112,6 +112,12 @@ or prediction:
 
 ```
 sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u predict.py --test_file input/{test_file} --output_file input/{output name} -m models/{model_name}
+```
+
+if you want to evaluate the quality of the prediction simply add the --evaluation Flag
+
+```
+sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u predict.py --evaluation --test_file input/{test_file} --output_file input/{output name} -m models/{model_name}
 ```
 
 We made the build image available here: https://drive.google.com/file/d/1-SZM4Uf0tL0Hg50YoiRrAmyHeQkupbeu/view?usp=sharing

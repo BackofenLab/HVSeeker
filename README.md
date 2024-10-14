@@ -158,6 +158,8 @@ or prediction:
 sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u predict.py --test_file input/{test_file} --output_file input/{output name} -m models/{model_name}
 ```
 
+if you want to run the evaluation instead, simply add the --evaluation flag.
+
 We made the build image available here: https://drive.google.com/file/d/1-SZM4Uf0tL0Hg50YoiRrAmyHeQkupbeu/view?usp=sharing
   
   
@@ -171,7 +173,7 @@ To use HVSeeker you can either train models yourself or download our pretrained 
 
 ```
 python main.py -f [List of training directories] [OPTIONS]
-``` 
+```
     
 ## Options  
 | Short Flag | Long Flag       | Description                                                                                   | Default   |
@@ -227,8 +229,37 @@ Predicting using a pre-trained model:
 python main.py -predict
 ```
 
+**Basic Usage HVSeeker-Proteins**  
 
 
+Since HVSeeker-Proteins relies on ProtBert you will first have to clone the ProtBert github from here: https://github.com/nadavbra/protein_bert
+```
+git clone https://github.com/nadavbra/protein_bert.git --recurse-submodules
+```
+
+To run HVSeeker-Proteins you will also have to download the pretrained models from: 
+
+https://drive.google.com/drive/folders/1wPgxfLnh-esQUB8xNhgnz9rJucmyX9Dm?usp=sharing
+
+Then you can simply run the model using the following commands:
+
+
+
+```
+python predict.py --output_file {prefix of output file} --test_file {test_file}
+```
+If you want to run evaluation instead, simply add the --evaluation flag. 
+
+additionally we provide a file for optimizing and training on a novel dataset:
+
+```
+optimize_finetuning.py -o {output_file}
+```
+and for training:
+
+```
+train.py -t {test_file} -f {training_file}
+```
 
 
 
