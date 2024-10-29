@@ -45,7 +45,7 @@ To set up your environment for this tool, follow these steps:
 
 ```
 git clone https://github.com/bulatef/HVSeeker.git
-cd HVSeeker/HVSeeker-DNA
+cd HVSeeker/HVSeeker/HVSeeker-DNA
 ```
 
 **Install required Python packages using pip:**    
