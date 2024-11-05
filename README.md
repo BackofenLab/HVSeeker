@@ -33,7 +33,7 @@ Before you run this script, ensure you have the following installed:
 **Python 3.x**  
 **PyTorch**  
 **BioPython**  
-Other dependencies for HVSeeker-DNA are listed in **HVSeeker-DNA_environment.yml** and for HVSeeker-Protein in **HVSeeker_Prot_enviroment.yml**
+Other dependencies for HVSeeker-DNA are listed in **HVSeeker_DNA_environment.yml** and for HVSeeker-Protein in **HVSeeker_Prot_enviroment.yml**
 
   
   
@@ -51,7 +51,7 @@ cd HVSeeker/HVSeeker/HVSeeker-DNA
 **Install required Python packages using pip:**    
 
 ```
-pip install -r HVSeeker-DNA_environment.yml
+pip install -r HVSeeker_DNA_environment.yml
 ```
   
 **Install required Python using conda:**    
@@ -76,7 +76,7 @@ Then we create an environment. The necessary setup is provided in the "environme
 In order to install the corresponding environment one can execute the following command from the "for_environment" directory
 
 ```
-conda env create -f HVSeeker-DNA_environment.yml --name HVSeekerDNA
+conda env create -f HVSeeker_DNA_environment.yml --name HVSeekerDNA
 ```
 
 or alternatively:
