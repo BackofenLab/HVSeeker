@@ -48,11 +48,6 @@ git clone https://github.com/bulatef/HVSeeker.git
 cd HVSeeker/HVSeeker-DNA
 ```
 
-**Install required Python packages using pip:**    
-
-```
-pip install -r HVSeeker_DNA_environment.yml
-```
   
 **Install required Python using conda:**    
 
@@ -98,10 +93,10 @@ or alternatively:
 conda activate HVSeekerProt
 ```
 
+
 ## Run HVSeekerDNA with docker
 
-Alternatively we provide a docker container capable of running HVSeeker_Protein. You can build it using the Dockerfile provided in the docker folder.
-First move the Dockerfile and enviroment.yml into the HVSeeker_Protein main directory. Before trying to create the image make sure you have both docker and nvidia-container-toolkit installed:
+Before trying to create the image make sure you have both docker and nvidia-container-toolkit installed:
 
 ```
 
@@ -114,12 +109,12 @@ sudo systemctl restart docker
 Alternative to using conda we make a docker image available. You can either build the docker image directly after copying docker file and environment into the corresponding folder:
 
 ```
-docker build --network host hvseekerdna .
+docker build --network host -t hvseekerdna .
 ```
 and then run all scripts using the created image. Just make sure to set the volume accordingly to your system. For training:
 
 ```
-sudo docker run  --gpus all -v {your-system-path}/Sample_Data/Bacteria:/app/Bacteria -v {your-system-path}/Sample_Data/Phage:/app/Phage -v {your-system-path}:/app/output hvseekerdna   python -u main.py -f Bacteria Phage -ts 10 10 -m 1 -l 1000 -o output
+sudo docker run  --gpus all -v {your-system-path}/Sample_Data/Phage:/app/Phage -v {your-system-path}/Sample_Data/Bacteria:/app/Bacteria -v {your-system-path}:/app/output hvseekerdna   python -u main.py -f Phage Bacteria -ts 10 10 -m 1 -l 1000 -o output
 ```
 
 and for prediction:
@@ -127,6 +122,7 @@ and for prediction:
 ```
 sudo docker run --gpus all -v {your-system-path}Sample_Data:/app/Sample_Data -v {your-system-path}:/app/output hvseekerdna python -u main.py -predict -o output
 ```
+
 we made the build docker image available here: https://drive.google.com/file/d/1OPPmD_s9YYOKd4leQGk4UkLFPSrEUS7O/view?usp=sharing
 
 ## Run HVSeekerProt with docker
@@ -149,31 +145,28 @@ sudo docker build --network host -t hvseekerprot .
 and run with for training:
 
 ```
-sudo docker run --network host --gpus all --privileged=true -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u train.py -t input/{data} -f input/{data} -s models"
+sudo docker run --network host --gpus all --privileged=true -v {your-path-to-data}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u train.py -t input/{data} -f input/{data} -s models"
 ```
 
 or prediction:
 
 ```
-sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u predict.py --test_file input/{test_file} --output_file input/{output name} -m models/{model_name}
+sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u predict.py --test_file input/{test_file} --output_file input/{output name} -m models/{model_name}"
 ```
 
 if you want to run the evaluation instead, simply add the --evaluation flag.
 
 We made the build image available here: https://drive.google.com/file/d/1-SZM4Uf0tL0Hg50YoiRrAmyHeQkupbeu/view?usp=sharing
   
-  
 ## Usage  
-This script can be run from the command line with various options. Below is a detailed description of the command-line arguments:  
+This script can be run from the command line with various options. First create a "Bacteria" folder to put in you Bacteria data and a "Phage" folder for your Phage data. 
+See the Sample_Data for an example. Below is a detailed description of the command-line arguments as used from the HVSeeker-DNA folder:    
   
-**Basic Usage HVSeeker-DNA**  
-
-To use HVSeeker you can either train models yourself or download our pretrained models from https://drive.google.com/drive/folders/14qXKk4YnBaxZ0_OPxDe-frm0WpQNnP6w in the folder /Method/Proposed method/
-
-
+  
+**Basic Usage**  
 ```
 python main.py -f [List of training directories] [OPTIONS]
-```
+``` 
     
 ## Options  
 | Short Flag | Long Flag       | Description                                                                                   | Default   |
@@ -191,30 +184,18 @@ When using the -predict flag, the script enters prediction mode. This mode expec
 **Y_test.csv:** A tab-delimited file with two columns; the first column is 'ID' and the second column is 'class name' (Bacteria or Phage).  
 **model_best_acc2_test_model.pt:** A pre-trained model file.  
 
-**Basic Usage HVSeeker-Proteins**  
+## Example  
+Training a model with default settings on specified files. Always use Phage as the first option to assign it as class 0:  
 
-
-Since HVSeeker-Proteins relies on ProtBert you will first have to clone the ProtBert github from here: https://github.com/nadavbra/protein_bert
-
-To run HVSeeker-Proteins you will also have to download the pretrained models from: https://drive.google.com/drive/folders/1akwf7QjDA_Hb2VMDhBZEGK7esNWNj3FI?usp=sharing
-Then you can simply run the model using the following commands:
-
-
-
+  ```
+python main.py -f Phage Bacteria -vts 10 10 -m 1 -l 1000
 ```
-python predict.py --output_file {prefix of output file} --test_file {test_file}
+  
+Predicting using a pre-trained model. The defaul expects to have been trained with a Phage (class 0) and Bacteria (class 1) option:
+  
 ```
-additionally we provide a file for optimizing and training on a novel dataset:
-
+python main.py -predict
 ```
-optimize_finetuning.py -o {output_file}
-```
-and for training:
-
-```
-train.py -t {test_file} -f {training_file}
-```
-
 
 ## Example  
 Training a model with default settings on specified files:  
@@ -229,6 +210,7 @@ Predicting using a pre-trained model:
 python main.py -predict
 ```
 
+
 **Basic Usage HVSeeker-Proteins**  
 
 
@@ -236,11 +218,7 @@ Since HVSeeker-Proteins relies on ProtBert you will first have to clone the Prot
 ```
 git clone https://github.com/nadavbra/protein_bert.git --recurse-submodules
 ```
-
-To run HVSeeker-Proteins you will also have to download the pretrained models from: 
-
-https://drive.google.com/drive/folders/1wPgxfLnh-esQUB8xNhgnz9rJucmyX9Dm?usp=sharing
-
+To run HVSeeker-Proteins you will also have to download the pretrained models from: https://drive.google.com/drive/folders/1akwf7QjDA_Hb2VMDhBZEGK7esNWNj3FI?usp=sharing
 Then you can simply run the model using the following commands:
 
 
@@ -248,18 +226,19 @@ Then you can simply run the model using the following commands:
 ```
 python predict.py --output_file {prefix of output file} --test_file {test_file}
 ```
-If you want to run evaluation instead, simply add the --evaluation flag. 
-
 additionally we provide a file for optimizing and training on a novel dataset:
 
 ```
-optimize_finetuning.py -o {output_file}
+python optimize_finetuning.py -o {output_file}  -f {file_for_finetuning}
 ```
 and for training:
 
 ```
-train.py -t {test_file} -f {training_file}
+python train.py -t {test_file} -f {training_file}
 ```
+
+
+
 
 
 

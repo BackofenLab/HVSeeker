@@ -1,10 +1,10 @@
-from proteinbert import OutputType, OutputSpec, FinetuningModelGenerator, load_pretrained_model, finetune, evaluate_by_len
-from proteinbert.conv_and_global_attention_model import get_model_with_hidden_layers_as_outputs, GlobalAttention
-from proteinbert.finetuning import filter_dataset_by_len, split_dataset_by_len, encode_dataset, get_evaluation_results
-from proteinbert import load_pretrained_model, InputEncoder
-from proteinbert import conv_and_global_attention_model 
+from protein_bert.proteinbert import OutputType, OutputSpec, FinetuningModelGenerator, load_pretrained_model, finetune, evaluate_by_len
+from protein_bert.proteinbert.conv_and_global_attention_model import get_model_with_hidden_layers_as_outputs, GlobalAttention
+from protein_bert.proteinbert.finetuning import filter_dataset_by_len, split_dataset_by_len, encode_dataset, get_evaluation_results
+from protein_bert.proteinbert import load_pretrained_model, InputEncoder
+from protein_bert.proteinbert import conv_and_global_attention_model 
 import numpy as np
-from proteinbert.model_generation import load_pretrained_model_from_dump
+from protein_bert.proteinbert.model_generation import load_pretrained_model_from_dump
 import random
 import argparse
 import pandas as pd
@@ -110,7 +110,7 @@ def run_model_prediction_only(arguments, output_file, seq_len, test_file, modelp
 
         dict_ = {"sequence": sequences, "y_pred": y_pred}
         df= pd.DataFrame(dict_)
-        df.to_csv(output_file+"/" + modelpath.split("pkl")[0] + "csv")
+        df.to_csv(output_file+"/" + modelpath.split("/")[-1].split("pkl")[0] + "csv")
                         
 
         return
@@ -223,7 +223,8 @@ def run_model_prediction(arguments, output_file, seq_len, test_file, modelpath):
         dict_ = {"sequence": sequences, "y_true": y_true, "y_pred": ypred}
         df= pd.DataFrame(dict_)
 
-        df.to_csv(output_file+"/" + modelpath.split("pkl")[0] + "csv")
+
+        df.to_csv(output_file+"/" + modelpath.split("/")[-1].split("pkl")[0] + "csv")
         
         print("confusion_matrix")
         print(confusion_matrix)
@@ -258,7 +259,7 @@ if __name__ == "__main__":
                                 help='name of test file',
                                 type=str)
     cmdline_parser.add_argument('-m', '--modelpath',
-                                default='./models/last_pretrained3.keras',
+                                default='./models/model.pkl',
                                 help='name of test file',
                                 type=str)
     cmdline_parser.add_argument('-e', '--evaluation',

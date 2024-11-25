@@ -5,9 +5,9 @@ import pickle
 import pandas as pd
 from tensorflow import keras
 from sklearn.model_selection import train_test_split
-from proteinbert import OutputType, OutputSpec, FinetuningModelGenerator, load_pretrained_model, finetune, evaluate_by_len
-from proteinbert import load_pretrained_model, InputEncoder
-from proteinbert.conv_and_global_attention_model import get_model_with_hidden_layers_as_outputs
+from protein_bert.proteinbert import OutputType, OutputSpec, FinetuningModelGenerator, load_pretrained_model, finetune, evaluate_by_len
+from protein_bert.proteinbert import load_pretrained_model, InputEncoder
+from protein_bert.proteinbert.conv_and_global_attention_model import get_model_with_hidden_layers_as_outputs
 import numpy as np
 import random
 import argparse

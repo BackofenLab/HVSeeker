@@ -28,10 +28,12 @@ def vts_checker(vts):
 def prepare_dataset(files, class_names, gene_file, organ_file, method=1, gene_length=1000, window=False):
     DNA_dataset = dict()
     protien_dataset = []
+
+    
     for i, directory in enumerate(files):
         path = os.path.dirname(os.path.abspath(__file__)) + '/' + directory
         DNA_dataset[directory] = DNA_dataset_creator(path, gene_length, method, class_names, i, gene_file, organ_file, window)
-    
+
     return protien_dataset, DNA_dataset
 
 if __name__ == '__main__':
@@ -180,8 +182,8 @@ if __name__ == '__main__':
         from DNA_Prediction_Preprocessing import test_and_plot
         from DNA_Predictor import predict
 
-        X_test, Y_test, number_sequences = test_and_plot(args.outpath, args.outpath, "test_model")
-        accuracy = predict(X_test, Y_test, model_path=args.outpath)
+        X_test, Y_test, number_sequences, mapping = test_and_plot(args.outpath, args.outpath, "test_model")
+        accuracy = predict(X_test, Y_test, mapping, model_path=args.outpath)
         print("The test accuracy is: " + str(accuracy))
 
 

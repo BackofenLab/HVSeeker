@@ -6,7 +6,7 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def predict(input_data, labels,model_path, batch_size=32):
+def predict(input_data, labels, mapping,model_path, batch_size=32):
     # Load the model
     model = torch.load(model_path + '/model_best_acc2_test_model.pt')
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -68,6 +68,12 @@ def predict(input_data, labels,model_path, batch_size=32):
 
     # Calculate overall accuracy
     accuracy = np.mean(np.array(all_predictions) == np.array(all_labels))
+    
+    
+    ### mapping labels
+    mapping = {v: k for k, v in mapping.items()}
+    all_labels = [mapping[a] for a in all_labels]
+    all_predictions = [mapping[a] for a in all_predictions]
 
     # Save predictions and labels to a CSV file
     df = pd.DataFrame({

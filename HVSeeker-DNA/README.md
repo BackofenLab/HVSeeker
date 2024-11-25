@@ -8,7 +8,8 @@ This tool is designed for training machine learning models on DNA sequence data 
   
   
 ## Usage  
-This script can be run from the command line with various options. Below is a detailed description of the command-line arguments:  
+This script can be run from the command line with various options. First create a "Bacteria" folder to put in you Bacteria data and a "Phage" folder for your Phage data. 
+See the Sample_Data for an example. Below is a detailed description of the command-line arguments:  
   
 **Basic Usage**  
 ```
@@ -32,13 +33,13 @@ When using the -predict flag, the script enters prediction mode. This mode expec
 **model_best_acc2_test_model.pt:** A pre-trained model file.  
 
 ## Example  
-Training a model with default settings on specified files:  
+Training a model with default settings on specified files. Always use Phage as the first option to assign it as class 0:  
 
   ```
-python main.py -f Bacteria Phage -vts 10 10 -m 1 -l 1000
+python main.py -f Phage Bacteria -vts 10 10 -m 1 -l 1000
 ```
   
-Predicting using a pre-trained model:
+Predicting using a pre-trained model. The defaul expects to have been trained with a Phage (class 0) and Bacteria (class 1) option:
   
 ```
 python main.py -predict
@@ -59,12 +60,12 @@ sudo systemctl restart docker
 Alternative to using conda we make a docker image available. You can either build the docker image directly after copying docker file and environment into the corresponding folder:
 
 ```
-docker build --network host hvseekerdna .
+docker build --network host -t hvseekerdna .
 ```
 and then run all scripts using the created image. Just make sure to set the volume accordingly to your system. For training:
 
 ```
-sudo docker run  --gpus all -v {your-system-path}/Sample_Data/Bacteria:/app/Bacteria -v {your-system-path}/Sample_Data/Phage:/app/Phage -v {your-system-path}:/app/output hvseekerdna   python -u main.py -f Bacteria Phage -ts 10 10 -m 1 -l 1000 -o output
+sudo docker run  --gpus all -v {your-system-path}/Sample_Data/Phage:/app/Phage -v {your-system-path}/Sample_Data/Bacteria:/app/Bacteria -v {your-system-path}:/app/output hvseekerdna   python -u main.py -f Phage Bacteria -ts 10 10 -m 1 -l 1000 -o output
 ```
 
 and for prediction:

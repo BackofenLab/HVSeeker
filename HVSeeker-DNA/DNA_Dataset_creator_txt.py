@@ -14,6 +14,8 @@ def DNA_dataset_creator(directory, gene_length, method, class_names, class_order
     seen = set()
     shorter_contigs = ""
     step = gene_length if not window else window
+    
+
 
     for filename in os.listdir(directory):
         f = os.path.join(directory, filename)

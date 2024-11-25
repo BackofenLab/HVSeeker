@@ -54,7 +54,7 @@ RUN conda run -n hvseekerProt pip install pyfaidx==0.5.8
 # RUN pip install tensorflow-gpu==2.4.0
 
 # Copy your Python scripts
-ADD protein_bert .
+ADD protein_bert protein_bert
 COPY optimize_finetuning.py .
 COPY predict.py .
 COPY train.py .

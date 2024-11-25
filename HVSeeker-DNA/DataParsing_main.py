@@ -12,7 +12,13 @@ from multiprocessing.dummy import Pool as ThreadPool
 import multiprocessing
 import operator
 
+class ReverseLabelEncoder(LabelEncoder):
+    def fit(self, y):
+        # Sort the unique labels in reverse order
+        self.classes_ = np.array(sorted(np.unique(y), reverse=True))
+        return self
 
+        
 class CircularList(list):
     def __getitem__(self, x):
         if isinstance(x, slice):
@@ -44,6 +50,8 @@ def encode_string(maxLen=None, x=[], y=[], y_encoder=None, repeat=True, use_spac
 
     for dna ony to int values
     """
+    
+
 
     def pad_n_repeat_sequences(sequences, maxlen=None, dtype='int32',
                                padding='post', truncating='post', value=0.):
@@ -120,11 +128,11 @@ def encode_string(maxLen=None, x=[], y=[], y_encoder=None, repeat=True, use_spac
 
         return x
 
-    encoder = LabelEncoder()
+    #encoder = LabelEncoder()
 
     if len(x) > 0:
         a = "ATGCN-"
-
+        encoder = LabelEncoder()
         encoder.fit(list(a))
         out = []
         if type(x)==str:
@@ -149,6 +157,7 @@ def encode_string(maxLen=None, x=[], y=[], y_encoder=None, repeat=True, use_spac
         return np.array(to_categorical(out, num_classes=len(a)), dtype=bool)
     else:
         if y_encoder != None:
+            encoder = ReverseLabelEncoder()
             encoder.fit(y)
             if np.array(encoder.classes_ != y_encoder.classes_).all():
                 warning(f"Warning not same classes in training and test set")
@@ -183,11 +192,16 @@ def encode_string(maxLen=None, x=[], y=[], y_encoder=None, repeat=True, use_spac
             return to_categorical(encoded_Y, num_classes=len(y_encoder.classes_))
 
         else:
+            encoder = ReverseLabelEncoder()
             encoder.fit(y)
             # print(encoder.classes_)
             # print(encoder.transform(encoder.classes_))
 
             encoded_Y = encoder.transform(y)
+            
+
+            
+            
             return to_categorical(encoded_Y), encoder
 
 

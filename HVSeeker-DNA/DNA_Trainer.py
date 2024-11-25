@@ -11,9 +11,9 @@ import sys
 
 os.environ["TORCH_USE_CUDA_DSA"] = "1"
 
-class DNALSTM(nn.Module):
+class CustomLSTM(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim, dropout):
-        super(DNALSTM, self).__init__()
+        super(CustomLSTM, self).__init__()
         self.hidden_dim = hidden_dim
         self.lstm1 = nn.LSTM(input_dim, hidden_dim, bidirectional=True, dropout=dropout, batch_first=True)
         self.lstm2 = nn.LSTM(hidden_dim*2, hidden_dim, bidirectional=True, dropout=dropout, batch_first=True)
@@ -53,7 +53,7 @@ def DNA_model(X_train, X_val, Y_train, Y_val, outpath, sampleSize=1, nodes=32, s
 
     timesteps = X_val.shape[1]
 
-    model = DNALSTM(input_dim=X_val.shape[-1], hidden_dim=nodes, output_dim=Y_train.shape[-1], dropout=dropout).to(device)
+    model = CustomLSTM(input_dim=X_val.shape[-1], hidden_dim=nodes, output_dim=Y_train.shape[-1], dropout=dropout).to(device)
 
 
     criterion = nn.CrossEntropyLoss(weight=class_weight)
@@ -161,6 +161,8 @@ def DNA_model(X_train, X_val, Y_train, Y_val, outpath, sampleSize=1, nodes=32, s
                 loss = criterion(output, y)
                 _, predicted = torch.max(output.data, 1)
                 total += y.size(0)
+
+                
                 correct += (predicted == y).sum().item()
                 val_loss += loss.item()
                
