@@ -68,13 +68,13 @@ bash Miniconda3-latest-Linux-x86_64.sh
 ```
 Then we create an environment. The necessary setup is provided in the "environment.yml" file inside the "for_environment" directory
 
-In order to install the corresponding environment one can execute the following command from the "for_environment" directory
+In order to install the corresponding environment one can execute the following command from the "HVSeeker-DNA" directory
 
 ```
 conda env create -f HVSeeker_DNA_environment.yml --name HVSeekerDNA
 ```
 
-or alternatively:
+or alternatively in the "HVSeeker-Protein" folder:
 
 ```
 conda env create -f HVSeeker_Prot_enviroment.yml --name HVSeekerProt
@@ -82,7 +82,7 @@ conda env create -f HVSeeker_Prot_enviroment.yml --name HVSeekerProt
 
 ### Activation of the environment
 
-Before running DeepDefense one need to activate the corresponding environment.
+Before running HVSeeker one need to activate the corresponding environment.
 
 ```
 conda activate HVSeekerDNA
@@ -123,7 +123,7 @@ and for prediction:
 sudo docker run --gpus all -v {your-system-path}Sample_Data:/app/Sample_Data -v {your-system-path}:/app/output hvseekerdna python -u main.py -predict -o output
 ```
 
-we made the build docker image available here: https://drive.google.com/file/d/1OPPmD_s9YYOKd4leQGk4UkLFPSrEUS7O/view?usp=sharing
+we made the build docker image available here: https://drive.google.com/file/d/1t2d-cQ0vi4agsGBLxNExmQZ8V4K9PyDm/view?usp=sharing
 
 ## Run HVSeekerProt with docker
 
@@ -156,7 +156,7 @@ sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-pat
 
 if you want to run the evaluation instead, simply add the --evaluation flag.
 
-We made the build image available here: https://drive.google.com/file/d/1-SZM4Uf0tL0Hg50YoiRrAmyHeQkupbeu/view?usp=sharing
+We made the build image available here: https://drive.google.com/file/d/1Bf3FMoI2rCDROma13lLfID1AaoeAvJ7L/view?usp=sharing
   
 ## Usage  
 This script can be run from the command line with various options. First create a "Bacteria" folder to put in you Bacteria data and a "Phage" folder for your Phage data. 
@@ -164,6 +164,10 @@ See the Sample_Data for an example. Below is a detailed description of the comma
   
   
 **Basic Usage**  
+
+To use HVSeeker you can either train models yourself or download our pretrained models from https://drive.google.com/drive/folders/1wHWgxH3Y9YSNJXugtZZrLI4PWJ6SDkaK?usp=sharing
+We recommend using the the corresponding padding model. 
+
 ```
 python main.py -f [List of training directories] [OPTIONS]
 ``` 
@@ -197,18 +201,7 @@ Predicting using a pre-trained model. The defaul expects to have been trained wi
 python main.py -predict
 ```
 
-## Example  
-Training a model with default settings on specified files:  
 
-```
-python main.py -f Bacteria Phage -vts 10 10 -m 1 -l 1000
-```
-
-Predicting using a pre-trained model:
-  
-```
-python main.py -predict
-```
 
 
 **Basic Usage HVSeeker-Proteins**  

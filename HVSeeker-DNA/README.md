@@ -8,10 +8,15 @@ This tool is designed for training machine learning models on DNA sequence data 
   
   
 ## Usage  
+
 This script can be run from the command line with various options. First create a "Bacteria" folder to put in you Bacteria data and a "Phage" folder for your Phage data. 
 See the Sample_Data for an example. Below is a detailed description of the command-line arguments:  
   
 **Basic Usage**  
+To use HVSeeker you can either train models yourself or download our pretrained models from https://drive.google.com/drive/folders/1wHWgxH3Y9YSNJXugtZZrLI4PWJ6SDkaK?usp=sharing
+We recommend using the the corresponding padding model. 
+
+
 ```
 python main.py -f [List of training directories] [OPTIONS]
 ``` 
@@ -74,7 +79,7 @@ and for prediction:
 sudo docker run --gpus all -v {your-system-path}Sample_Data:/app/Sample_Data -v {your-system-path}:/app/output hvseekerdna python -u main.py -predict -o output
 ```
 
-we made the build docker image available here: https://drive.google.com/file/d/1OPPmD_s9YYOKd4leQGk4UkLFPSrEUS7O/view?usp=sharing
+we made the build docker image available here: https://drive.google.com/file/d/1t2d-cQ0vi4agsGBLxNExmQZ8V4K9PyDm/view?usp=sharing
 
 
 ## Output  

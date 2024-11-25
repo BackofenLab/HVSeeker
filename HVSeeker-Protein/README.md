@@ -45,7 +45,7 @@ conda env create -f HVSeeker_Prot_enviroment.yml --name HVSeekerProt
 
 ### Activation of the environment
 
-Before running DeepDefense one need to activate the corresponding environment.
+Before running HVSeeker one needs to activate the corresponding environment.
 
 
 ```
@@ -119,7 +119,7 @@ if you want to evaluate the quality of the prediction simply add the --evaluatio
 sudo docker run --network host --gpus all -v {your-path}:/app/input -v {your-path-to-models}:/app/models hvseekerprot  bash -c "yes 'Yes' |  python -u predict.py --evaluation --test_file input/{test_file} --output_path input/{output name} -m models/{model_name}
 ```
 
-We made the build image available here: https://drive.google.com/file/d/1-SZM4Uf0tL0Hg50YoiRrAmyHeQkupbeu/view?usp=sharing
+We made the build image available here: https://drive.google.com/file/d/1Bf3FMoI2rCDROma13lLfID1AaoeAvJ7L/view?usp=sharing
 
 ### Output
 
