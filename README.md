@@ -44,7 +44,7 @@ To set up your environment for this tool, follow these steps:
 **Clone the repository:**    
 
 ```
-git clone https://github.com/bulatef/HVSeeker.git
+git clone https://github.com/BackofenLab/HVSeeker.git
 cd HVSeeker/HVSeeker-DNA
 ```
 
